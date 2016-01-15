@@ -1,0 +1,263 @@
+alignment tl
+
+background yes
+
+draw_borders no
+draw_graph_borders yes
+
+draw_outline no
+draw_shades no
+
+
+cpu_avg_samples 3
+diskio_avg_samples 3
+net_avg_samples 3
+
+update_interval 1
+
+double_buffer yes
+no_buffers yes
+
+own_window yes
+own_window_type desktop 
+own_window_argb_visual yes
+ 
+own_window_argb_value 1
+own_window_hints skip_taskbar,skip_pager,sticky
+
+
+gap_x 4 
+gap_y 1 
+
+minimum_size 1680 20
+maximum_width 1680
+          
+pad_percents 2
+           
+short_units yes
+
+#override_utf8_locale yes
+use_xft yes
+xftfont monospace:size=10.5
+xftalpha 0.8
+uppercase no
+
+#headers
+color0 ffffff 
+
+#dividers
+color1 585858   
+
+#sub dividers
+#color2 2c2c2c  
+
+#data
+color3 f0f0f0 
+
+use_spacer left
+
+lua_load ~/.config/conky/scripts/conky_lua_scripts.lua
+
+TEXT
+#
+## System
+#
+##load avg 1 min
+${color3}\
+${if_match ${loadavg 1} >= 0.50}${color FFFFFF}${endif}\
+${if_match ${loadavg 1} >= 1.00}${color FFFA00}${endif}\
+${if_match ${loadavg 1} >= 1.50}${color FFB400}${endif}\
+${if_match ${loadavg 1} >= 2.00}${color FF9600}${endif}\
+${if_match ${loadavg 1} >= 2.50}${color FF7800}${endif}\
+${if_match ${loadavg 1} >= 3.00}${color FF5000}${endif}\
+${if_match ${loadavg 1} >= 3.50}${color FF3C00}${endif}\
+${if_match ${loadavg 1} >= 4.00}${color FF1400}${endif}\
+${loadavg 1}\
+${color0}-\
+###load avg 5 min
+${color3}\
+${if_match ${loadavg 2} >= 0.50}${color FFFFFF}${endif}\
+${if_match ${loadavg 2} >= 1.00}${color FFFA00}${endif}\
+${if_match ${loadavg 2} >= 1.50}${color FFB400}${endif}\
+${if_match ${loadavg 2} >= 2.00}${color FF9600}${endif}\
+${if_match ${loadavg 2} >= 2.50}${color FF7800}${endif}\
+${if_match ${loadavg 2} >= 3.00}${color FF5000}${endif}\
+${if_match ${loadavg 2} >= 3.50}${color FF3C00}${endif}\
+${if_match ${loadavg 2} >= 4.00}${color FF1400}${endif}\
+${loadavg 2}\
+${color0}-\
+###load avg 15 min
+${color3}\
+${if_match ${loadavg 3} >= 0.50}${color FFFFFF}${endif}\
+${if_match ${loadavg 3} >= 1.00}${color FFFA00}${endif}\
+${if_match ${loadavg 3} >= 1.50}${color FFB400}${endif}\
+${if_match ${loadavg 3} >= 2.00}${color FF9600}${endif}\
+${if_match ${loadavg 3} >= 2.50}${color FF7800}${endif}\
+${if_match ${loadavg 3} >= 3.00}${color FF5000}${endif}\
+${if_match ${loadavg 3} >= 3.50}${color FF3C00}${endif}\
+${if_match ${loadavg 3} >= 4.00}${color FF1400}${endif}\
+${loadavg 3}\
+#
+#
+# |
+${voffset -1}${color0} |${voffset 1}\
+#
+${color3}\
+${if_match ${cpu cpu0} >= 45}${color FFFFFF}${endif}\
+${if_match ${cpu cpu0} >= 50}${color FFFA00}${endif}\
+${if_match ${cpu cpu0} >= 55}${color FFB400}${endif}\
+${if_match ${cpu cpu0} >= 50}${color FF9600}${endif}\
+${if_match ${cpu cpu0} >= 55}${color FF7800}${endif}\
+${if_match ${cpu cpu0} >= 60}${color FF5000}${endif}\
+${if_match ${cpu cpu0} >= 65}${color FF3C00}${endif}\
+${if_match ${cpu cpu0} >= 70}${color FF1400}${endif}\
+${if_match ${cpu cpu0} >= 72}${color FFFF00}${endif}\
+${cpu cpu0}% \
+#
+${color3}\
+${if_match ${hwmon 0 temp 1} >= 30}${color FFFFFF}${endif}\
+${if_match ${hwmon 0 temp 1} >= 35}${color FFFA00}${endif}\
+${if_match ${hwmon 0 temp 1} >= 40}${color FFB400}${endif}\
+${if_match ${hwmon 0 temp 1} >= 45}${color FF9600}${endif}\
+${if_match ${hwmon 0 temp 1} >= 50}${color FF7800}${endif}\
+${if_match ${hwmon 0 temp 1} >= 55}${color FF5000}${endif}\
+${if_match ${hwmon 0 temp 1} >= 60}${color FF3C00}${endif}\
+${if_match ${hwmon 0 temp 1} >= 65}${color FF1400}${endif}\
+${if_match ${hwmon 0 temp 1} >= 70}${color FFFF00}${endif}\
+${hwmon 0 temp 1}°c \
+#
+#fan
+${color3}\
+${if_match ${hwmon 2 fan 2} >= 1000}${color FFFFFF}${endif}\
+${if_match ${hwmon 2 fan 2} >= 1100}${color FFFA00}${endif}\
+${if_match ${hwmon 2 fan 2} >= 1200}${color FFB400}${endif}\
+${if_match ${hwmon 2 fan 2} >= 1300}${color FF9600}${endif}\
+${if_match ${hwmon 2 fan 2} >= 1400}${color FF7800}${endif}\
+${if_match ${hwmon 2 fan 2} >= 1500}${color FF5000}${endif}\
+${if_match ${hwmon 2 fan 2} >= 1600}${color FF3C00}${endif}\
+${if_match ${hwmon 2 fan 2} >= 1700}${color FF1400}${endif}\
+${if_match ${hwmon 2 fan 2} >= 1800}${color FFFF00}${endif}\
+${lua_parse pad4i ${hwmon 2 fan 2}}rpm\
+#
+# |
+${voffset -1}${color0} |${voffset 1}\
+#
+#
+#gpu
+${color3}\
+${if_match ${nvidia temp} >= 40}${color FFFFFF}${endif}\
+${if_match ${nvidia temp} >= 60}${color FFFA00}${endif}\
+${if_match ${nvidia temp} >= 65}${color FFB400}${endif}\
+${if_match ${nvidia temp} >= 70}${color FF9600}${endif}\
+${if_match ${nvidia temp} >= 75}${color FF7800}${endif}\
+${if_match ${nvidia temp} >= 80}${color FF5000}${endif}\
+${if_match ${nvidia temp} >= 85}${color FF3C00}${endif}\
+${if_match ${nvidia temp} >= 90}${color FF1400}${endif}\
+${if_match ${nvidia temp} >= 95}${color FFFF00}${endif}\
+ ${nvidia temp}°c\
+#
+#mem
+#
+# |
+${voffset -1}${color0} |${voffset 1} \
+#
+#
+${color3}${mem}\
+(\
+${if_match ${memperc} >= 11}${color FFFA00}${endif}\
+${if_match ${memperc} >= 23}${color FFFA00}${endif}\
+${if_match ${memperc} >= 34}${color FFB400}${endif}\
+${if_match ${memperc} >= 46}${color FF9600}${endif}\
+${if_match ${memperc} >= 58}${color FF7800}${endif}\
+${if_match ${memperc} >= 70}${color FF5000}${endif}\
+${if_match ${memperc} >= 82}${color FF3C00}${endif}\
+${if_match ${memperc} >= 92}${color FF1400}${endif}\
+${memperc}%\
+${color3})${memmax}\
+#
+# |
+${voffset -1}${color0} |${voffset 1} \
+#
+#
+${voffset -1}${color3} / ${voffset 1} \
+${if_match ${fs_used_perc /} >= 10}${color FFFFFF}${endif}\
+${if_match ${fs_used_perc /} >= 20}${color FFFA00}${endif}\
+${if_match ${fs_used_perc /} >= 30}${color FFB400}${endif}\
+${if_match ${fs_used_perc /} >= 40}${color FF9600}${endif}\
+${if_match ${fs_used_perc /} >= 50}${color FF7800}${endif}\
+${if_match ${fs_used_perc /} >= 60}${color FF5000}${endif}\
+${if_match ${fs_used_perc /} >= 70}${color FF3C00}${endif}\
+${if_match ${fs_used_perc /} >= 80}${color FF1400}${endif}\
+${if_match ${fs_used_perc /} >= 90}${color FFFF00}${endif}\
+${fs_used_perc /}%\
+${voffset -1}${color1} | ${voffset 1}${color3} /var \
+${if_match ${fs_used_perc /var} >= 10}${color FFFFFF}${endif}\
+${if_match ${fs_used_perc /var} >= 20}${color FFFA00}${endif}\
+${if_match ${fs_used_perc /var} >= 30}${color FFB400}${endif}\
+${if_match ${fs_used_perc /var} >= 40}${color FF9600}${endif}\
+${if_match ${fs_used_perc /var} >= 50}${color FF7800}${endif}\
+${if_match ${fs_used_perc /var} >= 60}${color FF5000}${endif}\
+${if_match ${fs_used_perc /var} >= 70}${color FF3C00}${endif}\
+${if_match ${fs_used_perc /var} >= 80}${color FF1400}${endif}\
+${if_match ${fs_used_perc /var} >= 90}${color FFFF00}${endif}\
+${fs_used_perc /var}%\
+#/home
+${voffset -1}${color1} |${voffset 1}${color3} /home  \
+${if_match ${fs_used_perc /home} >= 10}${color FFFFFF}${endif}\
+${if_match ${fs_used_perc /home} >= 20}${color FFFA00}${endif}\
+${if_match ${fs_used_perc /home} >= 30}${color FFB400}${endif}\
+${if_match ${fs_used_perc /home} >= 40}${color FF9600}${endif}\
+${if_match ${fs_used_perc /home} >= 50}${color FF7800}${endif}\
+${if_match ${fs_used_perc /home} >= 60}${color FF5000}${endif}\
+${if_match ${fs_used_perc /home} >= 70}${color FF3C00}${endif}\
+${if_match ${fs_used_perc /home} >= 80}${color FF1400}${endif}\
+${if_match ${fs_used_perc /home} >= 90}${color FFFF00}${endif}\
+${fs_used_perc /home}%\
+#cache
+${voffset -1}${color1} | ${voffset 1}${color3} cache \
+${if_match ${fs_used_perc /home/$USER/.cache} >= 10}${color FFFFFF}${endif}\
+${if_match ${fs_used_perc /home/$USER/.cache} >= 20}${color FFFA00}${endif}\
+${if_match ${fs_used_perc /home/$USER/.cache} >= 30}${color FFB400}${endif}\
+${if_match ${fs_used_perc /home/$USER/.cache} >= 40}${color FF9600}${endif}\
+${if_match ${fs_used_perc /home/$USER/.cache} >= 50}${color FF7800}${endif}\
+${if_match ${fs_used_perc /home/$USER/.cache} >= 60}${color FF5000}${endif}\
+${if_match ${fs_used_perc /home/$USER/.cache} >= 70}${color FF3C00}${endif}\
+${if_match ${fs_used_perc /home/$USER/.cache} >= 80}${color FF1400}${endif}\
+${if_match ${fs_used_perc /home/$USER/.cache} >= 90}${color FFFF00}${endif}\
+${fs_used_perc /home/$USER/.cache}%\
+#/data
+${voffset -1}${color1} |${voffset 1}${color3} /data  \
+${if_match ${fs_used_perc /data} >= 10}${color FFFFFF}${endif}\
+${if_match ${fs_used_perc /data} >= 20}${color FFFA00}${endif}\
+${if_match ${fs_used_perc /data} >= 30}${color FFB400}${endif}\
+${if_match ${fs_used_perc /data} >= 40}${color FF9600}${endif}\
+${if_match ${fs_used_perc /data} >= 50}${color FF7800}${endif}\
+${if_match ${fs_used_perc /data} >= 60}${color FF5000}${endif}\
+${if_match ${fs_used_perc /data} >= 70}${color FF3C00}${endif}\
+${if_match ${fs_used_perc /data} >= 80}${color FF1400}${endif}\
+${if_match ${fs_used_perc /data} >= 90}${color FFFF00}${endif}\
+${fs_used_perc /data}%\
+#/tmp
+${voffset -1}${color1} | ${voffset 1}${color3} /tmp \
+${if_match ${fs_used_perc /tmp} >= 10}${color FFFFFF}${endif}\
+${if_match ${fs_used_perc /tmp} >= 20}${color FFFA00}${endif}\
+${if_match ${fs_used_perc /tmp} >= 30}${color FFB400}${endif}\
+${if_match ${fs_used_perc /tmp} >= 40}${color FF9600}${endif}\
+${if_match ${fs_used_perc /tmp} >= 50}${color FF7800}${endif}\
+${if_match ${fs_used_perc /tmp} >= 60}${color FF5000}${endif}\
+${if_match ${fs_used_perc /tmp} >= 70}${color FF3C00}${endif}\
+${if_match ${fs_used_perc /tmp} >= 80}${color FF1400}${endif}\
+${if_match ${fs_used_perc /tmp} >= 90}${color FFFF00}${endif}\
+${fs_used_perc /tmp}%\
+#
+# |
+${voffset -1}${color0} |${voffset 1} \
+#
+#
+${if_up tun0}${color green}VPN${else}${color red}WAN${endif}\
+${voffset -1}${color1} | ${voffset 1}\
+${color3}${if_match ${downspeedf enp3s0} >= 1}${color FFFFFF}${endif}\
+${downspeedf enp3s0}${color2} -d\
+${color3}${if_match ${upspeedf enp3s0} >= 1}${color FFFFFF}${endif}\
+${upspeedf enp3s0} KiB${color2} -u\
+${alignr}${voffset -1}${color0}|${voffset 1} ${time %I:%M:%S %P} 
